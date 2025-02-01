@@ -1,25 +1,23 @@
 import PropTypes from 'prop-types';
 
-export default function Die(props){
-    const styles = {
-        backgroundColor: props.isHeld ? '#59E391' : 'white'
-    };
-    
-    Die.propTypes = {
-        hold: PropTypes.func.isRequired,
-        isHeld: PropTypes.bool.isRequired,
-        value: PropTypes.number.isRequired,
-        key: PropTypes.string
-    };
+export default function Die({ hold, value, isHeld }) {
+    const styles = { backgroundColor: isHeld ? '#59E391' : 'white' };
 
     return (
         <button
-            onClick={props.hold}
-            className="die" 
-            style={styles} 
-            key={props.key}
-            aria-pressed={props.isHeld}
-            aria-label={`Die with value ${props.value}, ${props.isHeld ? 'held' : 'not held'}`}
-        >{props.value}</button>
-    )
+            onClick={hold}
+            className="die"
+            style={styles}
+            aria-pressed={isHeld}
+            aria-label={`Die with value ${value}, ${isHeld ? 'held' : 'not held'}`}
+        >
+            {value}
+        </button>
+    );
 }
+
+Die.propTypes = {
+    hold: PropTypes.func.isRequired,
+    isHeld: PropTypes.bool.isRequired,
+    value: PropTypes.number.isRequired,
+};
